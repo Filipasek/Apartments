@@ -1,6 +1,10 @@
+import 'package:apartments/screens/pages/main_page.dart';
 import 'package:apartments/screens/pages/page_one.dart';
+import 'package:apartments/screens/pages/settings_page.dart';
+import 'package:apartments/screens/pages/shopping_page.dart';
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -17,7 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    _pageController = PageController();
+    _pageController = PageController(initialPage: 2);
   }
 
   @override
@@ -30,12 +34,15 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: BottomNavyBar(
+        containerHeight: 60.0,
+        backgroundColor: Colors.black,
         selectedIndex: _currentIndex,
         showElevation: true, // use this to remove appBar's elevation
         onItemSelected: (index) {
           setState(() => _currentIndex = index);
           _pageController.jumpToPage(index);
         },
+
         items: [
           BottomNavyBarItem(
             icon: Icon(Icons.liquor_rounded),
@@ -45,12 +52,12 @@ class _HomeScreenState extends State<HomeScreen> {
           BottomNavyBarItem(
             icon: Icon(Icons.shopping_cart_rounded),
             title: Text('Zakupy'),
-            activeColor: Colors.black,
+            activeColor: Colors.white,
           ),
           BottomNavyBarItem(
               icon: Icon(Icons.assistant),
               title: Text('Główna'),
-              activeColor: Colors.purpleAccent),
+              activeColor: Theme.of(context).primaryColor),
           BottomNavyBarItem(
               icon: Icon(Icons.checklist_rounded),
               title: Text(
@@ -64,22 +71,33 @@ class _HomeScreenState extends State<HomeScreen> {
               activeColor: Colors.blue),
         ],
       ),
-      backgroundColor: Color.fromARGB(255, 251, 254, 247),
-      appBar: AppBar(
-        centerTitle: true,
-        backgroundColor: Color.fromARGB(255, 251, 254, 247),
-        title: Text(
-          'F&S Apartments',
-          style: GoogleFonts.comfortaa(
-            textStyle: const TextStyle(
-              color: Color.fromARGB(255, 66, 73, 65),
-              fontWeight: FontWeight.w800,
-              fontSize: 24.0,
-            ),
-          ),
-        ),
-        elevation: 0.0,
-      ),
+      // backgroundColor: Color.fromARGB(255, 251, 254, 247),
+      backgroundColor: Colors.black,
+      // appBar: AppBar(
+      //   systemOverlayStyle: SystemUiOverlayStyle(
+      //     // Status bar color
+      //     statusBarColor: Colors.transparent,
+
+      //     // Status bar brightness (optional)
+      //     statusBarIconBrightness: Brightness.dark, // For Android (dark icons)
+      //     statusBarBrightness: Brightness.light, // For iOS (dark icons)
+      //   ),
+      // ),
+      // appBar: AppBar(
+      //   centerTitle: true,
+      //   backgroundColor: Color.fromARGB(255, 251, 254, 247),
+      //   title: Text(
+      //     'F&S Apartments',
+      //     style: GoogleFonts.comfortaa(
+      //       textStyle: const TextStyle(
+      //         color: Color.fromARGB(255, 66, 73, 65),
+      //         fontWeight: FontWeight.w800,
+      //         fontSize: 24.0,
+      //       ),
+      //     ),
+      //   ),
+      //   elevation: 0.0,
+      // ),
       body: SizedBox.expand(
         child: PageView(
           controller: _pageController,
@@ -88,16 +106,10 @@ class _HomeScreenState extends State<HomeScreen> {
           },
           children: <Widget>[
             PageOne(),
-            Container(
-              color: Colors.red,
-            ),
-            Container(
-              color: Colors.green,
-            ),
+            ShoppingPage(),
+            MainPage(),
             PageOne(),
-            Container(
-              color: Colors.yellow,
-            ),
+            SettingsPage(),
           ],
         ),
       ),

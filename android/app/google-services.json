@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "741637481466",
+    "firebase_url": "https://apartments-ea4bd-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "apartments-ea4bd",
+    "storage_bucket": "apartments-ea4bd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:741637481466:android:a5d741dcf8325d8c3e7a43",
+        "android_client_info": {
+          "package_name": "pl.filipguzdek.apartments"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "741637481466-8hudpdoc04jbi9q6ubar228dtbi5ljb2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC67zk9JgFVZzjFdp_-DL7BUHkfQ_jTr2k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "741637481466-8hudpdoc04jbi9q6ubar228dtbi5ljb2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

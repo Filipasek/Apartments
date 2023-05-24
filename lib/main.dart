@@ -1,8 +1,12 @@
 import 'package:apartments/screens/home_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -12,12 +16,27 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      //systemNavigationBarColor: Colors.blue, // navigation bar color
+      //statusBarColor: Colors.pink, // status bar color
+      statusBarBrightness: Brightness.light,
+      statusBarIconBrightness: Brightness.light,
+    ));
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-        textTheme: GoogleFonts.comfortaaTextTheme(),
-        primarySwatch: Colors.blue,
+        useMaterial3:
+            true, //TODO: check how it works   https://github.com/flutter/flutter/issues/91605
+        textTheme: GoogleFonts.comfortaaTextTheme().apply(
+          bodyColor: Colors.white,
+          displayColor: Colors.white,
+        ),
+        colorScheme:
+            ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 253, 196, 182)),
+        primarySwatch: Colors.indigo,
+        primaryColor: Color.fromARGB(255, 253, 196, 182),
       ),
       home: const HomeScreen(),
     );
